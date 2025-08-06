@@ -15,6 +15,7 @@ return new class extends Migration
             $table->id();
             $table->string('name');
             $table->string('email')->unique();
+            $table->string('phone');
             $table->boolean('status')->default(true); // true = ativo, false = desativo
             $table->foreignId('user_id')->constrained()->onDelete('cascade'); // relacionamento com usuário
             $table->timestamps();

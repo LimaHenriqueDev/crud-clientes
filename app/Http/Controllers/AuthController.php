@@ -31,16 +31,16 @@ class AuthController extends Controller
         return view('auth.register');
     }
 
-    public function register(RegisterRequest $request)
+    public function register(RegisterRequest $registerRequest)
     {
 
-        $this->userService->register($request->validated());
+        $this->userService->register($registerRequest->validated());
         return redirect('/login')->with('success', 'Cadastro realizado!');
     }
 
-    public function login(LoginRequest $request)
+    public function login(LoginRequest $loginRequest)
     {
-        $success = $this->userService->login($request->validated());
+        $success = $this->userService->login($loginRequest->validated());
 
         if (!$success) {
             return back()->withErrors([

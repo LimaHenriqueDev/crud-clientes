@@ -2,16 +2,27 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\StoreClientRequest;
+use App\Models\Client;
+use App\Services\ClientService;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class ClientController extends Controller
 {
+     protected $clientService;
+
+    public function __construct(ClientService $clientService)
+    {
+        $this->clientService = $clientService;
+    }
+
     /**
      * Display a listing of the resource.
      */
     public function index()
     {   
-           $clients = [];
+           $clients = Client::where('user_id', Auth::id())->get();
            return view('clients.index', compact('clients'));
     }
 
@@ -20,15 +31,16 @@ class ClientController extends Controller
      */
     public function create()
     {
-        //
+        return view('clients.create');
     }
 
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(StoreClientRequest $storeClientRequest)
     {
-        //
+        $this->clientService->create($storeClientRequest->validated());
+        return redirect('/clients')->with('success', 'Cadastro realizado!');
     }
 
     /**
@@ -42,9 +54,10 @@ class ClientController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(string $id)
+    public function edit(int $id)
     {
-        //
+        $client = Client::findOrFail($id);
+        return view('clients.edit', compact('client'));
     }
 
     /**

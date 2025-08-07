@@ -4,9 +4,9 @@
   </a>
 </p>
 
-<h2 align="center">📞 Agenda de Contatos</h2>
+<h2 align="center">Agenda de Clientes</h2>
 
-> Aplicação web desenvolvida em Laravel para gerenciamento de contatos pessoais. Cada usuário pode gerenciar seus próprios contatos de forma segura e organizada.
+> Aplicação web desenvolvida em Laravel para gerenciamento de clientes. Cada usuário pode gerenciar seus próprios clientes de forma segura e organizada.
 
 ---
 

@@ -10,7 +10,7 @@
   <div class="container d-flex justify-content-center align-items-center vh-100">
     <div class="col-md-4 bg-white p-4 rounded shadow">
 
-      <h2 class="mb-4 text-center">Login</h2>
+      <h2 class="mb-4 text-center">Entrar</h2>
 
          @if(session('error'))
             <div class="alert alert-danger">

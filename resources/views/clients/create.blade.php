@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-<div class="container mt-5">
+<div class="container mt-5 col-6">
     <h2>Cadastrar Cliente</h2>
 
     <form action="{{ route('clients.store') }}" method="POST">
@@ -16,6 +16,7 @@
                 class="form-control @error('name') is-invalid @enderror"
                 value="{{ old('name') }}"
                 required
+                 placeholder="Digite um nome"
             >
             @error('name')
                 <div class="invalid-feedback">{{ $message }}</div>
@@ -31,6 +32,7 @@
                 class="form-control @error('email') is-invalid @enderror"
                 value="{{ old('email') }}"
                 required
+                placeholder="Digite seu email"
             >
             @error('email')
                 <div class="invalid-feedback">{{ $message }}</div>
@@ -45,7 +47,9 @@
                 id="phone" 
                 class="form-control @error('phone') is-invalid @enderror"
                 value="{{ old('phone') }}"
+                data-inputmask="'mask': '(99) 99999-9999'"
                 required
+                placeholder="(99) 99999-9999"
             >
             @error('phone')
                 <div class="invalid-feedback">{{ $message }}</div>
@@ -73,3 +77,6 @@
     </form>
 </div>
 @endsection
+@push('scripts')
+  <script src="{{ asset('js/mask.js') }}"></script>
+@endpush

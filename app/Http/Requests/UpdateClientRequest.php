@@ -3,10 +3,9 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
-use Illuminate\Support\Facades\Auth;
 use Illuminate\Validation\Rule;
 
-class StoreClientRequest extends FormRequest
+class UpdateClientRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -23,19 +22,15 @@ class StoreClientRequest extends FormRequest
      */
     public function rules(): array
     {
-        $userId = Auth::id();
-
         return [
             'name'   => 'required|string',
-            'email'  => [
-                'required',
-                'email',
-                Rule::unique('clients')->where(function ($query) use ($userId) {
-                    return $query->where('user_id', $userId);
-                }),
+             'email' => [
+            'required',
+            'email',
+                Rule::unique('clients', 'email')->ignore($this->route('id')),
             ],
             'phone'  => 'required|string',
             'status' => 'required|boolean',
         ];
-        }
+    }
 }

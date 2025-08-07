@@ -1,12 +1,14 @@
 @extends('layouts.app')
 
 @section('content')
-<div class="container mt-5">
+<div class="container mt-5 col-6">
     <h2>Atualizar Cliente</h2>
 
     <form action="{{ route('clients.update', $client->id) }}" method="POST">
         @csrf
         @method('PUT')
+        <input type="hidden" name="page" value="{{ request()->get('page', 1) }}">
+
         <div class="mb-3">
             <label for="name" class="form-label">Nome</label>
             <input 
@@ -45,6 +47,7 @@
                 id="phone" 
                 class="form-control @error('phone') is-invalid @enderror"
                 value="{{ $client->phone }}"
+                data-inputmask="'mask': '(99) 99999-9999'"
                 required
             >
             @error('phone')
@@ -73,3 +76,7 @@
     </form>
 </div>
 @endsection
+@push('scripts')
+  <script src="{{ asset('js/mask.js') }}"></script>
+@endpush
+

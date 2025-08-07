@@ -27,6 +27,7 @@
                     value="{{ old('name') }}"
                     class="form-control @error('name') is-invalid @enderror"
                     required
+                    placeholder="Digite um nome"
                 />
                 @error('name')
                     <div class="invalid-feedback">{{ $message }}</div>
@@ -42,6 +43,8 @@
                     value="{{ old('email') }}"
                     class="form-control @error('email') is-invalid @enderror"
                     required
+                    placeholder="Digite um email"
+
                 />
                 @error('email')
                     <div class="invalid-feedback">{{ $message }}</div>
@@ -56,6 +59,8 @@
                     id="password"
                     class="form-control "
                     required
+                    placeholder="Digite uma senha"
+
                 />
              
             </div>
@@ -68,6 +73,8 @@
                     id="password_confirmation"
                     class="form-control @error('password') is-invalid @enderror"
                     required
+                    placeholder="Confirme sua senha"
+
                 />
                    @error('password')
                     <div class="invalid-feedback">{{ $message }}</div>

@@ -25,7 +25,7 @@
 
 - Cadastro e login de usuários
 - Proteção de rotas com middleware `auth`
-- CRUD de contatos por usuário (nome, email, telefone, status)
+- CRUD de clientes por usuário (nome, email, telefone, status)
 - Validações personalizadas por usuário (ex: e-mail único por dono)
 - Layout responsivo com menu e opção de logout
 

@@ -5,7 +5,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\LoginRequest;
 use App\Http\Requests\RegisterRequest;
 use App\Models\User;
-use App\Services\UserService;
+use App\Services\User\UserService;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
@@ -35,7 +35,7 @@ class AuthController extends Controller
     {
 
         $this->userService->register($registerRequest->validated());
-        return redirect('/login')->with('success', 'Cadastro realizado!');
+        return redirect('/login')->with('success', 'Cadastro realizado com sucesso!');
     }
 
     public function login(LoginRequest $loginRequest)

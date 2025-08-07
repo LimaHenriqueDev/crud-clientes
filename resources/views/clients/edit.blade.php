@@ -71,12 +71,14 @@
                 <div class="invalid-feedback">{{ $message }}</div>
             @enderror
         </div>
-
-        <button type="submit" class="btn btn-primary">Salvar</button>
+        <div class="d-flex justify-content-end mt-3">
+            <button type="submit" class="btn btn-primary">Salvar</button>
+        </div>
     </form>
 </div>
 @endsection
 @push('scripts')
   <script src="{{ asset('js/mask.js') }}"></script>
+  <script src="{{ asset('js/clearAlerts.js') }}"></script>
 @endpush
 

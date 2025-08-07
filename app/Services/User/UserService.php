@@ -1,23 +1,29 @@
 <?php
-namespace App\Services;
+namespace App\Services\User;
 
 use App\Models\User;
+use App\Repositories\UserRepository;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Auth;
 class UserService
 {
+    
+    protected $userRepository;
+
+    public function __construct(UserRepository  $userRepository)
+    {
+        $this->userRepository = $userRepository;
+    }
+ 
     public function register(array $data): User
     {
-        return User::create([
-            'name'     => $data['name'],
-            'email'    => $data['email'],
-            'password' => Hash::make($data['password']),
-        ]);
+        $data['password'] = Hash::make($data['password']);
+        return $this->userRepository->create($data);
     }
 
      public function login(array $data): bool
     {
-        $user = User::where('email', $data['email'])->first();
+        $user = $this->userRepository->findByEmail($data['email']);
 
         if (!$user) {
             return false;

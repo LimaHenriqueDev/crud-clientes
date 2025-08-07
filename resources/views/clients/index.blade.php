@@ -77,8 +77,7 @@
                 </div>
             </div>
         </div>
-        <!-- Paginação -->
-        <div class="d-flex justify-content-endmt-3">
+        <div class="d-flex justify-content-end mt-3">
           {{ $clients->appends(request()->query())->links() }}
         </div>
 </div>
@@ -87,6 +86,7 @@
 
 @push('scripts')
   <script src="{{ asset('js/client.js') }}"></script>
+  <script src="{{ asset('js/success.js') }}"></script>
 @endpush
 
 

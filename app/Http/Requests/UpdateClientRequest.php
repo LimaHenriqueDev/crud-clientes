@@ -3,6 +3,7 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Validation\Rule;
 
 class UpdateClientRequest extends FormRequest
@@ -22,12 +23,19 @@ class UpdateClientRequest extends FormRequest
      */
     public function rules(): array
     {
+        $userId = Auth::id();
+        $clientId = $this->route('id');
+
         return [
             'name'   => 'required|string',
-             'email' => [
-            'required',
-            'email',
-                Rule::unique('clients', 'email')->ignore($this->route('id')),
+            'email'  => [
+                'required',
+                'email',
+                Rule::unique('clients', 'email')
+                    ->where(function ($query) use ($userId) {
+                        return $query->where('user_id', $userId);
+                    })
+                    ->ignore($clientId),
             ],
             'phone'  => 'required|string',
             'status' => 'required|boolean',

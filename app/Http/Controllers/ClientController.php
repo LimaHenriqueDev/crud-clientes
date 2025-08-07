@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\StoreClientRequest;
 use App\Http\Requests\UpdateClientRequest;
 use App\Models\Client;
-use App\Services\ClientService;
+use App\Services\Client\ClientService;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -30,7 +30,7 @@ class ClientController extends Controller
             }
         }
 
-        $clients = $query->paginate(6);
+        $clients = $query->paginate(3);
         return view('clients.index', compact('clients'));
     }
 
@@ -67,9 +67,9 @@ class ClientController extends Controller
     public function destroy(int $id)
     {
         $page = request()->get('page', 1);
-         $this->clientService->delete($id);
-         return redirect()
-            ->route('clients.index', ['page' => $page])
-            ->with('success', 'Cliente deletado com sucesso!');
+        $this->clientService->delete($id);
+        return redirect()
+        ->route('clients.index', ['page' => $page])
+        ->with('success', 'Cliente deletado com sucesso!');
     }
 }

@@ -5,6 +5,8 @@
     <title>Cadastro</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" />
 </head>
+@extends('layouts.app')
+@section('content')
 <body class="bg-light">
 
 <div class="container d-flex justify-content-center align-items-center vh-100">
@@ -90,16 +92,6 @@
 </div>
 
 </body>
+@endsection
 </html>
-<script>
-    const inputs = document.querySelectorAll('.is-invalid');
-
-    inputs.forEach(input => {
-      input.addEventListener('focus', () => {
-        input.classList.remove('is-invalid');
-      });
-      input.addEventListener('input', () => {
-        input.classList.remove('is-invalid');
-      });
-    });
-</script>
+<script src="{{ asset('js/clearAlerts.js') }}"></script>
